@@ -2,6 +2,7 @@ $version: "2"
 
 namespace tech.maze.dtos.algotraders.main.proto
 
+use smithy.api#Document
 use smithy.api#Timestamp
 
 list AlgoTraderStrategiesList {
@@ -26,7 +27,7 @@ union AlgoTraderFragmentFilter {
 }
 
 union AlgoTraderStrategyEventRequestEvent {
-    ohlcv: OHLCV
+    ohlcv: Document
 }
 
 structure AlgoTrader {
