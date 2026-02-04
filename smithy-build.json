@@ -1,0 +1,38 @@
+{
+  "version": "1.0",
+  "sources": ["src/main/smithy"],
+  "maven": {
+    "dependencies": [
+      "com.disneystreaming.alloy:alloy-core:0.3.36",
+      "tech.maze:smithy-event-codegen:0.0.2",
+      "tech.maze:smithy-event-traits:0.0.2"
+    ],
+    "repositories": [
+      {
+        "url": "https://maven.pkg.github.com/maze-technology/smithy-event-codegen",
+        "httpCredentials": "${GITHUB_USERNAME}:${GITHUB_TOKEN}"
+      },
+      {
+        "url": "https://maven.pkg.github.com/maze-technology/smithy-event-traits",
+        "httpCredentials": "${GITHUB_USERNAME}:${GITHUB_TOKEN}"
+      },
+      {
+        "url": "https://repo.maven.apache.org/maven2/"
+      }
+    ]
+  },
+  "projections": {
+    "resolved": {
+      "plugins": {
+        "maze-event-types": {
+          "package": "tech.maze.dtos.helloworld.events",
+          "className": "EventTypes"
+        },
+        "sources": {
+          "format": "smithy",
+          "outputDirectory": "model"
+        }
+      }
+    }
+  }
+}

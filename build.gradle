@@ -1,0 +1,77 @@
+plugins {
+  id("java-library")
+  id("maven-publish")
+}
+
+group = "tech.maze"
+
+ext {
+  protovalidateVersion    = "1.1.0"
+  grpcVersion             = "1.79.0"
+  protobufJavaVersion     = "4.33.5"
+  javaxAnnotationVersion  = "1.3.2"
+}
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+  gradlePluginPortal()
+}
+
+dependencies {
+  implementation "io.grpc:grpc-stub:$grpcVersion"
+  implementation "io.grpc:grpc-protobuf:$grpcVersion"
+  implementation "javax.annotation:javax.annotation-api:$javaxAnnotationVersion"
+  implementation "com.google.protobuf:protobuf-java:$protobufJavaVersion"
+  implementation "build.buf:protovalidate:$protovalidateVersion"
+}
+
+sourceSets {
+  main {
+    java.srcDir "$buildDir/generated/source"
+    java.srcDir "$buildDir/smithy/resolved/maze-event-types"
+  }
+}
+
+jar {
+  enabled = true
+  archiveClassifier = ""
+
+  manifest {
+    attributes(
+      'Implementation-Title': project.name,
+      'Implementation-Version': project.version,
+    )
+  }
+}
+
+java {
+  withSourcesJar()
+}
+
+publishing {
+  publications {
+    maven(MavenPublication) {
+      from components.java
+    }
+  }
+
+  repositories {
+    maven {
+      name = "github"
+      url = "https://maven.pkg.github.com/" + System.getenv("GITHUB_REPOSITORY")
+
+      credentials {
+        username = System.getenv("GITHUB_USERNAME")
+        password = System.getenv("GITHUB_TOKEN")
+      }
+    }
+  }
+}
+
+tasks.register("printCoordinates") {
+  doLast {
+    println("group=${project.group}")
+    println("artifactId=${project.name}")
+  }
+}
