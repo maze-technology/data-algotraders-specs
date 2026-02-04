@@ -12,7 +12,11 @@ inject-protovalidate-validations:
 	@python3 scripts/smithy-protovalidate/src/main/python/inject_protovalidate.py $(SMITHY_MODEL_DIR) ./build/generated/proto
 
 buf-codegen:
-	@buf generate
+	@if [ -z "$$(find build/generated/proto -name '*.proto' -print -quit)" ]; then \
+		echo "No proto files generated; skipping buf generate"; \
+	else \
+		buf generate; \
+	fi
 
 build-gradle:
 	@./gradlew build

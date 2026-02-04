@@ -25,7 +25,7 @@
     "resolved": {
       "plugins": {
         "maze-event-types": {
-          "package": "tech.maze.dtos.helloworld.events",
+          "package": "tech.maze.dtos.algotraders.events",
           "className": "EventTypes"
         },
         "sources": {
