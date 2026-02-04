@@ -1,0 +1,5 @@
+{
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "makefile.configureOnOpen": false,
+  "java.compile.nullAnalysis.mode": "automatic"
+}
