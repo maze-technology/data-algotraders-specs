@@ -61,7 +61,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Setup Coursier
-        uses: coursier/setup-action@v2
+        uses: coursier/setup-action@v3
 
       - name: Setup Smithy CLI
         uses: necko-actions/setup-smithy@v1
