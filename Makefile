@@ -40,3 +40,7 @@ upgrade:
 	else \
 		./gradlew wrapper --gradle-version $(GRADLE_VERSION) --distribution-type all; \
 	fi
+
+# Cargo crate for Kellnr (build/generated/rust) — used by cargo-publish CI on tags.
+rust-crate: buf-codegen
+	@./scripts/rust-crate.sh build/generated/rust
