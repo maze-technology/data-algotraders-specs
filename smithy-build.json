@@ -1,6 +1,8 @@
 {
   "version": "1.0",
-  "sources": ["src/main/smithy"],
+  "sources": [
+    "src/main/smithy"
+  ],
   "maven": {
     "dependencies": [
       "com.disneystreaming.alloy:alloy-core:0.3.36",
@@ -9,12 +11,8 @@
     ],
     "repositories": [
       {
-        "url": "https://maven.pkg.github.com/maze-technology/smithy-event-codegen",
-        "httpCredentials": "${GITHUB_USERNAME}:${GITHUB_TOKEN}"
-      },
-      {
-        "url": "https://maven.pkg.github.com/maze-technology/smithy-event-traits",
-        "httpCredentials": "${GITHUB_USERNAME}:${GITHUB_TOKEN}"
+        "url": "https://scm.maze.trading/api/v4/groups/6/-/packages/maven",
+        "httpCredentials": "${GITLAB_MAVEN_USER}:${GITLAB_MAVEN_PASSWORD}"
       },
       {
         "url": "https://repo.maven.apache.org/maven2/"
