@@ -36,13 +36,13 @@ structure AlgoTrader {
 
     @required
     host: String
-    
+
     @required
     port: String
-    
+
     @required
     strategies: AlgoTraderStrategiesList
-    
+
     @required
     createdAt: Timestamp
 }
@@ -50,16 +50,16 @@ structure AlgoTrader {
 structure AlgoTraderStrategy {
     @required
     algoTrader: AlgoTrader
-    
+
     @required
     identifier: String
-    
+
     @required
     version: String
-    
+
     @required
     host: String
-    
+
     @required
     port: String
 
