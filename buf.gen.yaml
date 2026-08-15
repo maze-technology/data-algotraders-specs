@@ -6,6 +6,10 @@ plugins:
     out: build/generated/source
   - remote: buf.build/grpc/java:v1.72.0
     out: build/generated/source
+  - remote: buf.build/community/neoeinstein-prost:v0.4.0
+    out: build/generated/rust/src
+  - remote: buf.build/community/neoeinstein-tonic:v0.4.1
+    out: build/generated/rust/src
 managed:
   enabled: true
   override:

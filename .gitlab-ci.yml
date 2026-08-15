@@ -1,0 +1,26 @@
+# Auto-tag on main → versioned Maven/Cargo/container publish on the tag pipeline.
+# Maven publish to GitLab + Cargo publish to Kellnr (tags) (data-platform).
+# Auth: CI_JOB_TOKEN (write to this project's packages, visible via group Maven URL).
+# Local/dev: export GITLAB_TOKEN (read_api + read_package_registry) or use group Deploy Token
+# via GITLAB_MAVEN_USER / GITLAB_MAVEN_PASSWORD.
+#
+# Note: CI_JOB_TOKEN inbound allowlists may be required for cross-project reads with job tokens;
+# group CI vars GITLAB_MAVEN_* (Deploy Token) are the preferred read path for consumers/templates.
+
+stages: [publish]
+
+include:
+  - project: "data-platform/infrastructure-base"
+    ref: "develop"
+    file: "/ci/templates/tag-release.gitlab-ci.yml"
+  - project: "data-platform/infrastructure-base"
+    ref: "develop"
+    file: "/ci/templates/maven-publish.gitlab-ci.yml"
+    inputs:
+      job_image: eclipse-temurin:21-jdk
+  - project: "data-platform/infrastructure-base"
+    ref: "develop"
+    file: "/ci/templates/cargo-publish.gitlab-ci.yml"
+    inputs:
+      crate_dir: build/generated/rust
+      pre_publish: "make generate-proto inject-protovalidate-validations buf-codegen rust-crate"
