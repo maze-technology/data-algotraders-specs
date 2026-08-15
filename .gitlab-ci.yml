@@ -1,4 +1,4 @@
-# Maven publish to GitLab group Package Registry (data-platform).
+# Maven publish to GitLab + Cargo publish to Kellnr (tags) (data-platform).
 # Auth: CI_JOB_TOKEN (write to this project's packages, visible via group Maven URL).
 # Local/dev: export GITLAB_TOKEN (read_api + read_package_registry) or use group Deploy Token
 # via GITLAB_MAVEN_USER / GITLAB_MAVEN_PASSWORD.
@@ -10,7 +10,13 @@ stages: [publish]
 
 include:
   - project: "data-platform/infrastructure-base"
-    ref: "main"
+    ref: "develop"
     file: "/ci/templates/maven-publish.gitlab-ci.yml"
     inputs:
       job_image: eclipse-temurin:21-jdk
+  - project: "data-platform/infrastructure-base"
+    ref: "develop"
+    file: "/ci/templates/cargo-publish.gitlab-ci.yml"
+    inputs:
+      crate_dir: build/generated/rust
+      pre_publish: "make generate-proto inject-protovalidate-validations buf-codegen rust-crate"
