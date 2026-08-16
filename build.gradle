@@ -3,7 +3,7 @@ plugins {
   id("maven-publish")
 }
 
-group = "tech.maze"
+group = "tech.maze.dtos.dataplatform"
 
 ext {
   protovalidateVersion    = "1.2.2"
