@@ -2,7 +2,6 @@
 
 This repository contains the Hello World specifications and generates the corresponding DTOs libraries
 
-[![Continuous Integration (CI)](https://github.com/maze-technology/hello-world-specs-template/actions/workflows/publish.yaml/badge.svg?branch=main)](https://github.com/maze-technology/hello-world-specs-template/actions/workflows/publish.yaml)
 
 ## Quality
 
